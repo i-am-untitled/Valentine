@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -26,40 +26,97 @@
         align-items: center;
         background: linear-gradient(
           135deg,
-          #ffe5ec 0%,
-          #ffc4dd 50%,
-          #ffb3d9 100%
+          #1a1a2e 0%,
+          #2d1b3d 30%,
+          #4a2c4f 60%,
+          #6b4a6e 100%
         );
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
         position: relative;
       }
 
-      /* Floating hearts background animation */
+      /* Starry background */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(2px 2px at 20% 30%, white, transparent),
+          radial-gradient(2px 2px at 60% 70%, white, transparent),
+          radial-gradient(1px 1px at 50% 50%, white, transparent),
+          radial-gradient(1px 1px at 80% 10%, white, transparent),
+          radial-gradient(2px 2px at 90% 60%, white, transparent),
+          radial-gradient(1px 1px at 33% 80%, white, transparent),
+          radial-gradient(1px 1px at 15% 60%, white, transparent);
+        background-size: 200% 200%;
+        animation: starsTwinkle 8s ease-in-out infinite;
+        opacity: 0.6;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      @keyframes starsTwinkle {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 0.9; }
+      }
+
+      /* Floating celestial elements */
       .floating-heart {
         position: absolute;
         font-size: 30px;
-        opacity: 0.3;
+        opacity: 0.4;
         animation: float 15s infinite ease-in-out;
         pointer-events: none;
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+        z-index: 5;
       }
 
       @keyframes float {
         0%,
         100% {
           transform: translateY(0) rotate(0deg);
+          opacity: 0.4;
         }
         50% {
           transform: translateY(-30px) rotate(10deg);
+          opacity: 0.7;
         }
       }
 
       .container {
         text-align: center;
-        padding: 20px;
-        max-width: 390px;
+        padding: 30px 20px;
+        max-width: 550px;
         width: 100%;
+        max-height: 95vh;
+        overflow-y: auto;
         position: relative;
         z-index: 10;
+        /* Subtle moonlight glow */
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 40px rgba(200, 220, 255, 0.2),
+                    inset 0 0 60px rgba(255, 255, 255, 0.05);
+      }
+
+      /* Custom scrollbar */
+      .container::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+
+      .container::-webkit-scrollbar-thumb {
+        background: rgba(200, 220, 255, 0.4);
+        border-radius: 10px;
       }
 
       .emoji-header {
@@ -80,18 +137,21 @@
 
       h1 {
         font-size: 42px;
-        color: #ff4d7d;
+        color: #ffc4dd;
         margin-bottom: 15px;
-        text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.5);
+        text-shadow: 0 0 20px rgba(200, 220, 255, 0.6),
+                     0 0 40px rgba(255, 196, 221, 0.4),
+                     2px 2px 4px rgba(0, 0, 0, 0.3);
         font-weight: 700;
         line-height: 1.2;
       }
 
       .subtext {
         font-size: 18px;
-        color: #8b5a78;
-        margin-bottom: 50px;
+        color: #d4c5e0;
+        margin-bottom: 40px;
         font-weight: 500;
+        text-shadow: 0 0 10px rgba(212, 197, 224, 0.5);
       }
 
       .buttons-container {
@@ -108,23 +168,29 @@
         font-size: 24px;
         font-weight: 600;
         padding: 18px 50px;
-        border: none;
+        border: 2px solid rgba(200, 220, 255, 0.3);
         border-radius: 50px;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 0 20px rgba(200, 220, 255, 0.3),
+                    0 8px 20px rgba(0, 0, 0, 0.3);
         position: relative;
       }
 
       #yesBtn {
-        background: linear-gradient(135deg, #ff6b9d 0%, #ff4d7d 100%);
+        background: linear-gradient(135deg, #c8a2d0 0%, #9b7ab8 100%);
         color: white;
         transform: scale(1);
+        box-shadow: 0 0 30px rgba(200, 162, 208, 0.6),
+                    0 8px 20px rgba(0, 0, 0, 0.3),
+                    inset 0 0 20px rgba(255, 255, 255, 0.2);
       }
 
       #yesBtn:hover {
         transform: scale(1.05);
-        box-shadow: 0 12px 30px rgba(255, 77, 125, 0.4);
+        box-shadow: 0 0 40px rgba(200, 162, 208, 0.8),
+                    0 12px 30px rgba(155, 122, 184, 0.5),
+                    inset 0 0 30px rgba(255, 255, 255, 0.3);
       }
 
       #yesBtn:active {
@@ -136,86 +202,155 @@
         color: white;
         position: absolute;
         transform: scale(1);
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       }
 
       #noBtn:hover {
         background: linear-gradient(135deg, #c49aab 0%, #b38fa0 100%);
       }
 
-      /* Success state */
-      .success-message {
+      /* Hide initial content when success is shown */
+      .initial-content {
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .initial-content.hide {
+        opacity: 0;
+        transform: scale(0.9);
+        pointer-events: none;
+      }
+
+      /* Romantic reveal container */
+      .romantic-reveal {
         display: none;
-        animation: fadeInScale 0.6s ease;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
 
-      .success-message.show {
+      .romantic-reveal.show {
         display: block;
+        animation: revealFadeIn 0.8s ease forwards;
       }
 
-      @keyframes fadeInScale {
-        from {
-          opacity: 0;
-          transform: scale(0.8);
-        }
+      @keyframes revealFadeIn {
         to {
           opacity: 1;
           transform: scale(1);
         }
       }
 
-      .success-emoji {
-        font-size: 100px;
-        margin-bottom: 20px;
-        animation: spin 0.6s ease;
+      .reveal-name {
+        font-family: "Playfair Display", serif;
+        font-size: 64px;
+        font-weight: 800;
+        color: #e8d4f0;
+        margin-bottom: 25px;
+        text-shadow: 0 0 30px rgba(200, 220, 255, 0.8),
+                     0 0 50px rgba(232, 212, 240, 0.6),
+                     0 0 80px rgba(155, 122, 184, 0.4),
+                     2px 2px 6px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: nameReveal 0.8s ease 0.3s forwards;
+        letter-spacing: 2px;
       }
 
-      @keyframes spin {
-        from {
-          transform: rotate(0deg) scale(0);
-        }
+      @keyframes nameReveal {
         to {
-          transform: rotate(360deg) scale(1);
+          opacity: 1;
+          transform: translateY(0) scale(1);
         }
       }
 
-      .success-text {
-        font-size: 28px;
-        color: #ff4d7d;
-        font-weight: 700;
-        margin-bottom: 10px;
+      .reveal-poem {
+        font-family: "Playfair Display", serif;
+        font-size: 17px;
+        line-height: 1.7;
+        color: #d4c5e0;
+        margin: 20px auto;
+        max-width: 450px;
+        padding: 0 20px;
+        white-space: pre-line;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: poemReveal 0.8s ease 0.6s forwards;
+        font-style: italic;
+        text-shadow: 0 0 15px rgba(212, 197, 224, 0.4),
+                     0 2px 4px rgba(0, 0, 0, 0.3);
       }
 
-      .success-subtext {
-        font-size: 20px;
-        color: #8b5a78;
-        font-weight: 500;
+      @keyframes poemReveal {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
-      /* Confetti */
-      .confetti {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: #ff6b9d;
-        position: absolute;
-        animation: confetti-fall 3s ease-out forwards;
+      .reveal-gif {
+        margin-top: 25px;
+        margin-bottom: 30px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(200, 220, 255, 0.4),
+                    0 10px 40px rgba(0, 0, 0, 0.5),
+                    inset 0 0 20px rgba(255, 255, 255, 0.1);
+        max-width: 380px;
+        width: 100%;
+        opacity: 0;
+        transform: scale(0.9);
+        animation: gifReveal 0.8s ease 0.9s forwards;
+        border: 2px solid rgba(200, 220, 255, 0.3);
+      }
+
+      .reveal-gif img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      @keyframes gifReveal {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Floating hearts animation */
+      .floating-heart-animated {
+        position: fixed;
+        font-size: 30px;
         pointer-events: none;
+        z-index: 1000;
+        animation: floatUpAndFade 4s ease-out forwards;
       }
 
-      @keyframes confetti-fall {
+      @keyframes floatUpAndFade {
         0% {
-          transform: translateY(0) rotate(0deg);
+          transform: translateY(0) translateX(0) rotate(0deg);
           opacity: 1;
         }
+        50% {
+          transform: translateY(-50vh) translateX(20px) rotate(180deg);
+          opacity: 0.8;
+        }
         100% {
-          transform: translateY(100vh) rotate(720deg);
+          transform: translateY(-100vh) translateX(-10px) rotate(360deg);
           opacity: 0;
         }
       }
 
-      /* Hide initial content when success is shown */
-      .initial-content.hide {
-        display: none;
+      /* Responsive adjustments */
+      @media (max-width: 480px) {
+        .reveal-name {
+          font-size: 48px;
+        }
+        .reveal-poem {
+          font-size: 16px;
+        }
+        .reveal-gif {
+          max-width: 300px;
+        }
       }
     </style>
   </head>
@@ -260,11 +395,24 @@
         </div>
       </div>
 
-      <!-- Success message (hidden initially) -->
-      <div class="success-message" id="successMessage">
-        <div class="success-emoji">🎉</div>
-        <div class="success-text">Correct answer!</div>
-        <div class="success-subtext">You're stuck with me now 😌</div>
+      <!-- Romantic reveal (hidden initially) -->
+      <div class="romantic-reveal" id="romanticReveal">
+        <div class="reveal-name">Chisa</div>
+        <div class="reveal-poem">I call you Selene,
+because your eyes glow like moonlight on still water;
+soft, irresistible, pulling me closer.
+
+Your mind is a spark,
+quick and bright,
+but your smile…
+your smile is the curve I can't stop tracing
+even in my thoughts.
+
+Stay close, Selene;
+I'm ready to orbit you forever.</div>
+        <div class="reveal-gif">
+          <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExanF1bm95b3R4Ynd0dmpjejd6MWJyenZ2aWVnYmEwZGR1emphZHVtcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y9joz1712cgg0/giphy.gif" alt="Romantic Animation" />
+        </div>
       </div>
     </div>
 
@@ -273,7 +421,7 @@
       const noBtn = document.getElementById("noBtn");
       const buttonsContainer = document.getElementById("buttonsContainer");
       const initialContent = document.getElementById("initialContent");
-      const successMessage = document.getElementById("successMessage");
+      const romanticReveal = document.getElementById("romanticReveal");
 
       let noClickCount = 0;
       let yesBtnScale = 1;
@@ -297,12 +445,63 @@
         "Catch me if you can 🏃"
       ];
 
+      // ============================================
+      // AUDIO - Romantic chime using Web Audio API
+      // ============================================
+      function playRomanticChime() {
+        try {
+          const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          
+          // Create a pleasant chime sound
+          const now = audioContext.currentTime;
+          
+          // Oscillator 1 - Main tone
+          const osc1 = audioContext.createOscillator();
+          const gain1 = audioContext.createGain();
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(523.25, now); // C5
+          gain1.gain.setValueAtTime(0.3, now);
+          gain1.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
+          osc1.connect(gain1);
+          gain1.connect(audioContext.destination);
+          osc1.start(now);
+          osc1.stop(now + 1.5);
+          
+          // Oscillator 2 - Harmony (major third)
+          const osc2 = audioContext.createOscillator();
+          const gain2 = audioContext.createGain();
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(659.25, now); // E5
+          gain2.gain.setValueAtTime(0.2, now);
+          gain2.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
+          osc2.connect(gain2);
+          gain2.connect(audioContext.destination);
+          osc2.start(now);
+          osc2.stop(now + 1.5);
+          
+          // Oscillator 3 - Fifth
+          const osc3 = audioContext.createOscillator();
+          const gain3 = audioContext.createGain();
+          osc3.type = 'sine';
+          osc3.frequency.setValueAtTime(783.99, now); // G5
+          gain3.gain.setValueAtTime(0.15, now);
+          gain3.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
+          osc3.connect(gain3);
+          gain3.connect(audioContext.destination);
+          osc3.start(now);
+          osc3.stop(now + 1.5);
+          
+        } catch (error) {
+          console.log('Audio not supported');
+        }
+      }
+
+      // ============================================
+      // NO BUTTON - Playful evasive behavior
+      // ============================================
+      
       // Position "No" button initially
       function positionNoButton() {
-        const containerRect = buttonsContainer.getBoundingClientRect();
-        const btnRect = noBtn.getBoundingClientRect();
-
-        // Start position (below Yes button)
         noBtn.style.top = "100px";
         noBtn.style.left = "50%";
         noBtn.style.transform = "translateX(-50%)";
@@ -310,17 +509,17 @@
 
       positionNoButton();
 
-      // Move "No" button to random position
+      // Move "No" button to random position (playful, not abrupt)
       function moveNoButton() {
         const containerRect = buttonsContainer.getBoundingClientRect();
         const btnWidth = noBtn.offsetWidth;
         const btnHeight = noBtn.offsetHeight;
 
-        // Calculate bounds within container
-        const maxX = containerRect.width - btnWidth;
-        const maxY = containerRect.height - btnHeight;
+        // Calculate safe bounds (keep button within viewport)
+        const maxX = Math.max(0, containerRect.width - btnWidth);
+        const maxY = Math.max(0, containerRect.height - btnHeight);
 
-        // Generate random position
+        // Generate random position with smooth movement
         const randomX = Math.random() * maxX;
         const randomY = Math.random() * maxY;
 
@@ -358,96 +557,96 @@
           noBtn.textContent = noButtonTexts[noClickCount];
         }
 
-        // Move the button
+        // Move the button playfully
         moveNoButton();
 
         // Shrink and fade the "No" button
-        const newScale = Math.max(0.4, 1 - noClickCount * 0.15);
-        const newOpacity = Math.max(0.3, 1 - noClickCount * 0.15);
+        const newScale = Math.max(0.4, 1 - noClickCount * 0.1);
+        const newOpacity = Math.max(0.4, 1 - noClickCount * 0.1);
         noBtn.style.transform = `scale(${newScale})`;
         noBtn.style.opacity = newOpacity;
 
         // Grow the "Yes" button
-        yesBtnScale += 0.15;
+        yesBtnScale += 0.12;
         yesBtn.style.transform = `scale(${yesBtnScale})`;
 
         vibrate();
       }
 
-      // Handle "Yes" button click
+      // ============================================
+      // YES BUTTON - Romantic reveal sequence
+      // ============================================
+      
       yesBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        celebrate();
+        
+        // Play romantic chime sound
+        playRomanticChime();
+        
+        // Start romantic reveal sequence
+        revealRomance();
+        
+        // Vibrate on mobile
         vibrate(200);
       });
 
-      // Celebration function
-      function celebrate() {
-        // Hide initial content
+      function revealRomance() {
+        // Fade out initial content
         initialContent.classList.add("hide");
-
-        // Show success message
-        successMessage.classList.add("show");
-
-        // Create confetti
-        createConfetti();
+        
+        // Wait for fade out, then show romantic reveal
+        setTimeout(() => {
+          initialContent.style.display = "none";
+          romanticReveal.classList.add("show");
+          
+          // Start floating hearts after reveal begins
+          setTimeout(() => {
+            createFloatingHearts();
+          }, 800);
+        }, 600);
       }
 
-      // Create confetti effect
-      function createConfetti() {
-        const colors = [
-          "#FF6B9D",
-          "#FFD93D",
-          "#6BCB77",
-          "#4D96FF",
-          "#FF6B9D",
-          "#FFC4DD",
-        ];
-        const confettiCount = 50;
-
-        for (let i = 0; i < confettiCount; i++) {
+      // ============================================
+      // FLOATING HEARTS ANIMATION
+      // ============================================
+      
+      function createFloatingHearts() {
+        const heartEmojis = ['💕', '💖', '💗', '💝', '💘', '❤️', '💓'];
+        const heartCount = 15;
+        
+        for (let i = 0; i < heartCount; i++) {
           setTimeout(() => {
-            const confetti = document.createElement("div");
-            confetti.className = "confetti";
-            confetti.style.left = Math.random() * 100 + "vw";
-            confetti.style.background =
-              colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.animationDelay = Math.random() * 0.3 + "s";
-            confetti.style.width = Math.random() * 10 + 5 + "px";
-            confetti.style.height = Math.random() * 10 + 5 + "px";
-
-            // Random shapes
-            if (Math.random() > 0.5) {
-              confetti.style.borderRadius = "50%";
-            }
-
-            document.body.appendChild(confetti);
-
-            // Remove after animation
-            setTimeout(() => confetti.remove(), 3000);
-          }, i * 30);
-        }
-
-        // Add heart confetti
-        for (let i = 0; i < 20; i++) {
-          setTimeout(() => {
-            const heart = document.createElement("div");
-            heart.textContent = "💕";
-            heart.style.position = "absolute";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.top = "-50px";
-            heart.style.fontSize = Math.random() * 30 + 20 + "px";
-            heart.style.animation = "confetti-fall 3s ease-out forwards";
-            heart.style.animationDelay = Math.random() * 0.5 + "s";
-            heart.style.pointerEvents = "none";
-
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart-animated';
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            
+            // Random starting position at bottom
+            const startX = Math.random() * window.innerWidth;
+            heart.style.left = startX + 'px';
+            heart.style.bottom = '-50px';
+            
+            // Random size
+            const size = 20 + Math.random() * 30;
+            heart.style.fontSize = size + 'px';
+            
+            // Random animation duration for variety
+            const duration = 3 + Math.random() * 2;
+            heart.style.animationDuration = duration + 's';
+            
             document.body.appendChild(heart);
-
-            setTimeout(() => heart.remove(), 3500);
-          }, i * 50);
+            
+            // Remove heart after animation completes
+            setTimeout(() => {
+              heart.remove();
+            }, duration * 1000);
+          }, i * 200);
         }
       }
 
+      // ============================================
+      // UTILITIES
+      // ============================================
+      
       // Vibration function (only works on mobile)
       function vibrate(duration = 50) {
         if ("vibrate" in navigator) {
